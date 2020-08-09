@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+	例如namespace="com#{orderItem.szh#{orderItem.mapper#{orderItem.personMapper"就是com#{orderItem.szh#{orderItem.mapper(包名)+personMapper(personMapper#{orderItem.xml文件去除后缀) -->
+<mapper namespace="com.fh.shop.order.mapper.OrderItemMapper">
+
+    <insert id="bathInsert">
+        insert into t_order_detail (
+        orderId,userId,productId,productName,imgUrl,price,num,subPrice) values 
+        <foreach collection="list" item="orderItem" separator=",">
+            (
+            #{orderItem.orderId},#{orderItem.userId},#{orderItem.productId},
+            #{orderItem.productName},#{orderItem.imgUrl},#{orderItem.price},
+            #{orderItem.num},#{orderItem.subPrice})
+        </foreach>
+    </insert>
+
+</mapper>
